@@ -11,7 +11,7 @@ public class DepositCalculator {
         return getRounding(pay, 2);
     }
 
-    double calculateSimplePercent(double amount, double yearRate,int yearsCount) {
+    double calculateSimplePercent(double amount, double yearRate, int yearsCount) {
         return getRounding(amount + amount * yearRate * yearsCount, 2);
     }
 
@@ -21,9 +21,9 @@ public class DepositCalculator {
     }
 
     void processUserInput() {
-        int period;
+        int yearsCount;
         int depositType;
-        double percentRate = 0.06;
+        double yearRate = 0.06;
         int amount;
 
         Scanner scanner = new Scanner(System.in);
@@ -31,19 +31,19 @@ public class DepositCalculator {
         amount = scanner.nextInt();
 
         System.out.println("Введите срок вклада в годах:");
-        period = scanner.nextInt();
+        yearsCount = scanner.nextInt();
 
         System.out.println("Выберите тип вклада, 1 - вклад с обычным процентом, 2 - вклад с капитализацией:");
         depositType = scanner.nextInt();
         double totalProfit = 0.0;
 
         if (depositType == 1) {
-            totalProfit = calculateSimplePercent(amount, percentRate, period);
+            totalProfit = calculateSimplePercent(amount, yearRate, yearsCount);
 
         } else if (depositType == 2) {
-            totalProfit = calculateComplexPercent(amount, percentRate, period);
+            totalProfit = calculateComplexPercent(amount, yearRate, yearsCount);
         }
-        System.out.println("Результат вклада: " + amount + " за " + period + " лет превратятся в " + totalProfit);
+        System.out.println("Результат вклада: " + amount + " за " + yearsCount + " лет превратятся в " + totalProfit);
     }
 
-    }
+}
